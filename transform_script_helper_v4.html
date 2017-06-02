@@ -27,9 +27,12 @@ Make sure that input fields are not empty
 <br/>
 <br/>
 <textarea id="settingsvalues" rows="10" cols="100"></textarea><br/>
+
 6. <button id="gensettingsfile">Download Settings File </button>
+
 <br/>
 <br/>
+
 7. Use this command to generate the json file
 <div id="genjsoncommand"></div>
 
@@ -53,7 +56,7 @@ function genSettingsContent() {
 	sVal.value = sVal.value + "CRAWLER='crawlers.foia_crawler.FoiaCrawler'\n"
 	sVal.value = sVal.value + "MODEL='models.foia_document.FoiaDocument'\n"
 	sVal.value = sVal.value + "EXTRACTOR='extractors.cell_extractor.XlsExtractor'\n"
-	sVal.value = sVal.value + "MATCH_ID_COLUMN='" + matchcol.value + "'\n"
+	sVal.value = sVal.value + "MATCH_ID_COLUMN=" + matchcol.value + "\n"
 	sVal.value = sVal.value + "STARTING_ROW=" + startrow.value + "\n"
 	
 	finalfilename = filename.value.substring(0, filename.value.length - 3)
@@ -92,23 +95,17 @@ document.getElementById("getsettings").onclick = genSettingsContent
 </br>
 <textarea id="jsonbox" rows="40" cols="100" placeholder="paste raw json here">{"Street": "TENNIS PLAZA RD UN 39", "PermitNo": "GP005289", "AddressNo": "84", "OwnerName": "CARVALHO MARIA F.", "IssuedDate": "2017-01-17", "ProposedUse": "INSTALL GAS APPLIANCES", "ContractorName": "Eric J. White", "ContractorTelephone": "6038970152"}</textarea>
 </br></br>
-8a. Now create a table and categorize the fields into permit, permit status and contractor<button id="categorizefields">Categorize fields</button>
-</br></br>
-<div>
-	<table id="categorizetable">
-		<tbody id="categorizetable_bod">
-		
-		</tbody>
-	</table>
-</div>
-</br></br>
-9. Input fuzzy match error tolerance level (1=aggressive but more errors, 0=conservative but more accuracy): <input type="text" id="fuzzytol" name="" value="0.8" />
+9. Input fuzzy match error tolerance level (1=aggressive but more errors, 0=conservative but more accuracy): <input type="text" id="fuzzytol" name="" value="0.7" />
 </br></br>
 10. Create the mapping table:
 <button id="mapping">Start Mapping </button>
 </br>
 11. Click the orange cells to select a recommended value, else select from down down. Check the CO? box if it's contractor related
-</br></br>
+</br>
+</br>
+</br>
+
+
 <div>
 	<table id="table">
 		<tbody id="table_bod">
@@ -124,23 +121,20 @@ document.getElementById("getsettings").onclick = genSettingsContent
 <textarea id="output" rows="40" cols="100" ></textarea>
 <br/><br/>
 14.<button id="dltransformscript">Download Transform Script</button>
-<br/><br/>
-
-15. Run the transform script<div id="gentransformcommand"></div>
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
 <script src="https://cdn.jsdelivr.net/fuse/2.6.1/fuse.min.js" type="text/javascript"></script>
 <script type="text/javascript">
-
-var contractortransformcols = [
-	{
-		col:'license_id'
-	},
+var transformcols = [
+// ------ contractor stuff 
 	{
 		col:'business_name'
 	},
 	{
 		col:'street_address'
+	},
+	{
+		col:'phone_1'
 	},
 	{
 		col:'city'
@@ -152,39 +146,25 @@ var contractortransformcols = [
 		col:'zipcode'
 	},
 	{
-		col:'license_expiry_date'
+		col:'applicant'
 	},
-	{
-		col:'principal_name'
-	},
-	{
-		col:'contractor_type'
-	},
-	{
-		col:'email'
-	},
-	{
-		col:'phone_1'
-	},
-	{
-		col:'phone_2'
-	},
-	{
-		col:'phone_3'
-	},
-	{
-		col:'phone_4'
-	}
 
-];
+// ------ permit stuff 
 
-var permittransformcols = [
-
-	
-	// ------ permit stuff 
-	
+	{
+		col:'issued'
+	},
+	{
+		col:'source_id'
+	},
+	{
+		col:'match_id'
+	},
 	{
 		col:'source_permit_id'
+	},
+	{
+		col:'parsed_document_id'
 	},
 	{
 		col:'application_number'
@@ -221,6 +201,48 @@ var permittransformcols = [
 	},
 	{
 		col:'remarks'
+	},
+	{
+		col:'address_number_prefix'
+	},
+	{
+		col:'address_number'
+	},
+	{
+		col:'address_number_suffix'
+	},
+	{
+		col:'street_name_pre_modifier'
+	},
+	{
+		col:'street_name_pre_directional'
+	},
+	{
+		col:'street_name_pre_type'
+	},
+	{
+		col:'street_name'
+	},
+	{
+		col:'street_name_post_type'
+	},
+	{
+		col:'street_name_post_directional'
+	},
+	{
+		col:'subaddress_type'
+	},
+	{
+		col:'subaddress_identifier'
+	},
+	{
+		col:'building_name'
+	},
+	{
+		col:'occupancy_type'
+	},
+	{
+		col:'occupancy_identifier'
 	},
 	{
 		col:'street_address'
@@ -332,144 +354,110 @@ var permittransformcols = [
 	},
 	{
 		col:'owner_phone_4'
+	},
+	{
+		col:'keyword'
+	},
+	{
+		col:'scraped_at'
+	},
+	{
+		col:'verified_at'
+	},
+	{
+		col:'created_at'
+	},
+	{
+		col:'updated_at'
 	}
 ];
 
-	function addFieldTypeSelect(tablecell,dropdownid){
 
-	    var select = document.createElement("select");
-	    select.setAttribute("id", dropdownid);
-	
-		option = document.createElement('option');
-		option.setAttribute('value','permit');
-		option.innerHTML ='permit'
-		select.appendChild(option)
 
-		option = document.createElement('option');
-		option.setAttribute('value','status');
-		option.innerHTML ='status'
-		select.appendChild(option)
-		
-		option = document.createElement('option');
-		option.setAttribute('value','contractor');
-		option.innerHTML ='contractor'
-		select.appendChild(option)
-		
-		document.getElementById(tablecell).appendChild(select);
-		
-		
-	
-	}
-
-	function addContractorSelect(tablecell,dropdownid){
-
+	function addSelect(tablecell,dropdownid) {
 	    var select = document.createElement("select");
 	//    select.setAttribute("name", "mySelect" + i);
 	    select.setAttribute("id", dropdownid);
 	
+
+
+
 		option = document.createElement('option');
 		option.setAttribute('value','exclude');
 		option.innerHTML ='exclude'
 		select.appendChild(option)
 
 // -------- contractor stuff --------
-
+		option = document.createElement('option');
+		option.setAttribute('value','phone_1');
+		option.innerHTML ='phone_1'
+		select.appendChild(option)
 		
 		option = document.createElement('option');
-		option.setAttribute('value','license_id');
-		option.innerHTML ='license_id - CO'
-		select.appendChild(option)
-
-		option = document.createElement('option');
 		option.setAttribute('value','business_name');
-		option.innerHTML ='business_name - CO'
+		option.innerHTML ='business_name'
 		select.appendChild(option)
 		
 		option = document.createElement('option');
 		option.setAttribute('value','street_address');
-		option.innerHTML ='street_address - CO'
+		option.innerHTML ='street_address'
 		select.appendChild(option)
 		
 		option = document.createElement('option');
 		option.setAttribute('value','city');
-		option.innerHTML ='city - CO'
+		option.innerHTML ='city'
 		select.appendChild(option)
 		
 		option = document.createElement('option');
 		option.setAttribute('value','state');
-		option.innerHTML ='state - CO'
+		option.innerHTML ='state'
 		select.appendChild(option)
 		
 		option = document.createElement('option');
 		option.setAttribute('value','zipcode');
-		option.innerHTML ='zipcode - CO'
-		select.appendChild(option)
-
-		option = document.createElement('option');
-		option.setAttribute('value','license_expiry_date');
-		option.innerHTML ='license_expiry_date - CO'
+		option.innerHTML ='zipcode'
 		select.appendChild(option)
 		
 		option = document.createElement('option');
-		option.setAttribute('value','principal_name');
-		option.innerHTML ='principal_name - CO'
-		select.appendChild(option)
-		
-		option = document.createElement('option');
-		option.setAttribute('value','contractor_type');
-		option.innerHTML ='contractor_type - CO'
-		select.appendChild(option)
-		
-		option = document.createElement('option');
-		option.setAttribute('value','email');
-		option.innerHTML ='email - CO'
-		select.appendChild(option)
-		
-		option = document.createElement('option');
-		option.setAttribute('value','phone_1');
-		option.innerHTML ='phone_1 - CO'
-		select.appendChild(option)
-		
-		option = document.createElement('option');
-		option.setAttribute('value','phone_2');
-		option.innerHTML ='phone_2 - CO'
-		select.appendChild(option)
-		
-		option = document.createElement('option');
-		option.setAttribute('value','phone_3');
-		option.innerHTML ='phone_3 - CO'
-		select.appendChild(option)
-		
-		option = document.createElement('option');
-		option.setAttribute('value','phone_4');
-		option.innerHTML ='phone_4 - CO'
-		select.appendChild(option)
-	
-		document.getElementById(tablecell).appendChild(select); 
-	
-	}
-
-	function addPermitSelect(tablecell,dropdownid) {
-
-	    var select = document.createElement("select");
-	//    select.setAttribute("name", "mySelect" + i);
-	    select.setAttribute("id", dropdownid);
-	
-
-
-
-		option = document.createElement('option');
-		option.setAttribute('value','exclude');
-		option.innerHTML ='exclude'
+		option.setAttribute('value','applicant');
+		option.innerHTML ='applicant'
 		select.appendChild(option)
 
 
-		
+
+
 // -------- permit stuff --------
 
+
+
+		option = document.createElement('option');
+		option.setAttribute('value','issued');
+		option.innerHTML ='issued'
+		select.appendChild(option)
+	
+		option = document.createElement('option');
+		option.setAttribute('value','issuedate');
+		option.innerHTML ='issuedate'
+		select.appendChild(option)
+	
+		option = document.createElement('option');
+		option.setAttribute('value','source_id');
+		option.innerHTML ='source_id'
+		select.appendChild(option)
+		
+		option = document.createElement('option');
+		option.setAttribute('value','match_id');
+		option.innerHTML ='match_id'
+		select.appendChild(option)
+		
 		option = document.createElement('option');
 		option.setAttribute('value','source_permit_id');
 		option.innerHTML ='source_permit_id'
+		select.appendChild(option)
+		
+		option = document.createElement('option');
+		option.setAttribute('value','parsed_document_id');
+		option.innerHTML ='parsed_document_id'
 		select.appendChild(option)
 		
 		option = document.createElement('option');
@@ -530,6 +518,76 @@ var permittransformcols = [
 		option = document.createElement('option');
 		option.setAttribute('value','remarks');
 		option.innerHTML ='remarks'
+		select.appendChild(option)
+		
+		option = document.createElement('option');
+		option.setAttribute('value','address_number_prefix');
+		option.innerHTML ='address_number_prefix'
+		select.appendChild(option)
+		
+		option = document.createElement('option');
+		option.setAttribute('value','address_number');
+		option.innerHTML ='address_number'
+		select.appendChild(option)
+		
+		option = document.createElement('option');
+		option.setAttribute('value','address_number_suffix');
+		option.innerHTML ='address_number_suffix'
+		select.appendChild(option)
+		
+		option = document.createElement('option');
+		option.setAttribute('value','street_name_pre_modifier');
+		option.innerHTML ='street_name_pre_modifier'
+		select.appendChild(option)
+		
+		option = document.createElement('option');
+		option.setAttribute('value','street_name_pre_directional');
+		option.innerHTML ='street_name_pre_directional'
+		select.appendChild(option)
+		
+		option = document.createElement('option');
+		option.setAttribute('value','street_name_pre_type');
+		option.innerHTML ='street_name_pre_type'
+		select.appendChild(option)
+		
+		option = document.createElement('option');
+		option.setAttribute('value','street_name');
+		option.innerHTML ='street_name'
+		select.appendChild(option)
+		
+		option = document.createElement('option');
+		option.setAttribute('value','street_name_post_type');
+		option.innerHTML ='street_name_post_type'
+		select.appendChild(option)
+		
+		option = document.createElement('option');
+		option.setAttribute('value','street_name_post_directional');
+		option.innerHTML ='street_name_post_directional'
+		select.appendChild(option)
+		
+		option = document.createElement('option');
+		option.setAttribute('value','subaddress_type');
+		option.innerHTML ='subaddress_type'
+		select.appendChild(option)
+		
+		option = document.createElement('option');
+		option.setAttribute('value','subaddress_identifier');
+		option.innerHTML ='subaddress_identifier'
+		select.appendChild(option)
+		
+		option = document.createElement('option');
+		option.setAttribute('value','building_name');
+		option.innerHTML ='building_name'
+		select.appendChild(option)
+		
+		option = document.createElement('option');
+		option.setAttribute('value','occupancy_type');
+		option.innerHTML ='occupancy_type'
+		select.appendChild(option)
+		
+		option = document.createElement('option');
+		option.setAttribute('value','occupancy_identifier');
+		option.innerHTML ='occupancy_identifier'
 		select.appendChild(option)
 		
 		option = document.createElement('option');
@@ -716,7 +774,32 @@ var permittransformcols = [
 		option.setAttribute('value','owner_phone_4');
 		option.innerHTML ='owner_phone_4'
 		select.appendChild(option)
-				
+		
+		option = document.createElement('option');
+		option.setAttribute('value','keyword');
+		option.innerHTML ='keyword'
+		select.appendChild(option)
+		
+		option = document.createElement('option');
+		option.setAttribute('value','scraped_at');
+		option.innerHTML ='scraped_at'
+		select.appendChild(option)
+		
+		option = document.createElement('option');
+		option.setAttribute('value','verified_at');
+		option.innerHTML ='verified_at'
+		select.appendChild(option)
+		
+		option = document.createElement('option');
+		option.setAttribute('value','created_at');
+		option.innerHTML ='created_at'
+		select.appendChild(option)
+		
+		option = document.createElement('option');
+		option.setAttribute('value','updated_at');
+		option.innerHTML ='updated_at'
+		select.appendChild(option)
+		
 	
 	
 	    document.getElementById(tablecell).appendChild(select);
@@ -724,164 +807,73 @@ var permittransformcols = [
 	
 	}
 
-	function categorizefieldstable(){
-
-		document.getElementById("categorizetable_bod").innerHTML = ""
+	function createMappingTable(){;
+	
+		document.getElementById("table_bod").innerHTML = ""
 	
 		var data 		= JSON.parse(document.getElementById("jsonbox").value)
-		var outputdiv 	= document.getElementById("categorizetable").getElementsByTagName('tbody')[0];
+		var outputdiv 	= document.getElementById("table").getElementsByTagName('tbody')[0];
 		
 		
 		for (var key in data) {
 		
 		  if (data.hasOwnProperty(key)) {
-	
-			if (key != "") //deal with this type of entry in the json blob "": ""
-			{
-			
-			    var newRow 			= outputdiv.insertRow(outputdiv.rows.length);    
-			  	    
-				//e.g. PermitNo
-			    var transCol = newRow.insertCell(0)
-			    transCol.appendChild(document.createTextNode(key))
-			    
-				//e.g. GP005289
-			    var transColVal = newRow.insertCell(1)
-			    var str = data[key].toString()
-			    transColVal.appendChild(document.createTextNode(str.substring(0,55)))	
-	
-				var dropdowncell 	= newRow.insertCell(2)
-				dropdowncell.setAttribute("id", key + "-categorizecelldp")
-				addFieldTypeSelect(key + "-categorizecelldp", key + "-categorizedropdown")
-		    }
+		
+//		    console.log(key + " -> " + data[key]);
+		
+		    var newRow 			= outputdiv.insertRow(outputdiv.rows.length);    
+		  
+  
+		    var dropdowncell 	= newRow.insertCell(0)
+		    dropdowncell.setAttribute("id", key + "-celldp")
+		    addSelect(key + "-celldp", key + "-dropdown")
 		    
+			//e.g. PermitNo
+		    var transCol = newRow.insertCell(1)
+		    transCol.appendChild(document.createTextNode(key))
+		    
+			//e.g. GP005289
+		    var transColVal = newRow.insertCell(2)
+		    transColVal.appendChild(document.createTextNode(data[key]))		 
+
+			var contractorCheckBox 	= newRow.insertCell(3)
+			contractorCheckBox.innerHTML = "Status?: <input id='checkBox' type='checkbox'>"
+			
+			var statusCheckBox 		= newRow.insertCell(4)
+			statusCheckBox.innerHTML = "CO?: <input id='checkBox' type='checkbox'>"   
+		    
+		    tresh = document.getElementById("fuzzytol").value
+		    
+		    var fuzzySearchOptions = {
+		      tokenize: true,
+		      findAllMatches: true,
+		      threshold: tresh,
+		      include: ["score"],
+		      keys: ["col"]
+		    };
+		    
+		    var fuse = new Fuse(transformcols,fuzzySearchOptions); // "list" is the item array
+		    var result = fuse.search(key);
+		    
+		    if (result.length > 0) {
+		    
+//			    var fuzSearchResults = newRow.insertCell(3)		    
+//			    fuzSearchResults.appendChild(document.createTextNode(result[0].item.col))
+
+				for (var i=0;i<result.length;i++){
+					var fuzSearchResults = newRow.insertCell(i+5)
+					fuzSearchResults.setAttribute("title", result[i].score)
+					fuzSearchResults.className= key + "-dropdown " + "suggested"
+					fuzSearchResults.appendChild(document.createTextNode(result[i].item.col))
+				}
+				document.getElementById(key + "-dropdown").value = result[0].item.col
+
+		    
+		    }
+//			document.getElementById(key + "-dropdown").value = "hello";	    
+//			console.log(result[0]);
 	
 		  }
-		}
-	}
-
-
-	function createMappingTable(){
-	
-		//clear the table 
-		document.getElementById("table_bod").innerHTML = ""
-	
-		//grab the json
-		var data 		= JSON.parse(document.getElementById("jsonbox").value)
-		//get an element which you'll build into the final mapping table 
-		var outputdiv 	= document.getElementById("table").getElementsByTagName('tbody')[0];
-		
-		//get the category table from above so you can loop through it to create the table 
-		category_table = document.getElementById("categorizetable")
-		
-		//The matchidcolumn from the setting file section is always the source_permit_id. So grab this value, look for it in the mapping table and then hard assign it, while ignoring the fuzzy stuff
-		source_permit_id  	 = document.getElementById("matchcol").value
-		var skip_fuzzy 		 = false;
-
-		for(var i=0;i<category_table.rows.length;i++){
-
-			//get the first column value, e.g. AddressNo or IssuedDate
-			key = category_table.rows[i].firstChild.innerHTML
-
-			//get whether the row is a permit, contractor or status type row 
-			fieldTypeDiv = document.getElementById(key + "-categorizedropdown")
-			fieldTypeDivValue = fieldTypeDiv.value
-
-			//create the row for the mapping table 			
-		    var newRow 			= outputdiv.insertRow(outputdiv.rows.length);    	
-		    skip_fuzzy 			= false;	    
-		    
-
-			//if the field has been categorized as permit, contractor or status then create the field specific drop downa and enable the field specific fuzzy logic
-			if (fieldTypeDivValue == "permit"){
-
-//				<td id="Street-celldp">
-				var dropdowncell 	= newRow.insertCell(0)
-				dropdowncell.setAttribute("id", key + "-celldp")
-				addPermitSelect(key + "-celldp", key + "-dropdown")
-				
-				//e.g. PermitNo
-				var transCol = newRow.insertCell(1)
-				transCol.appendChild(document.createTextNode(key))
-				
-				//e.g. the value of PermitNo: GP005289
-				var transColVal = newRow.insertCell(2)
-				var str = data[key].toString()
-				transColVal.appendChild(document.createTextNode(str.substring(0,55)))	
-
-				transformcols = permittransformcols
-				var fieldtype = newRow.insertCell(3)
-				fieldtype.appendChild(document.createTextNode("permit"))
-				
-				
-				if (key ==  source_permit_id) 
-				{
-					document.getElementById(key + "-dropdown").value = "source_permit_id"
-					skip_fuzzy = true; 
-				}
-
-			}
-			else if (fieldTypeDivValue == "contractor"){
-
-//				<td id="Street-celldp">
-				var dropdowncell 	= newRow.insertCell(0)
-				dropdowncell.setAttribute("id", key + "-celldp")
-				addContractorSelect(key + "-celldp", key + "-dropdown")
-				
-				//e.g. PermitNo
-				var transCol = newRow.insertCell(1)
-				transCol.appendChild(document.createTextNode(key))
-				
-				//e.g. the value of PermitNo: GP005289
-				var transColVal = newRow.insertCell(2)
-				var str = data[key].toString()
-				transColVal.appendChild(document.createTextNode(str.substring(0,55)))	
-
-				transformcols= contractortransformcols
-				var fieldtype = newRow.insertCell(3)
-				fieldtype.appendChild(document.createTextNode("contractor"))
-
-			}
-			else {
-			 //status tbd
-			}
-	 
-
-			if(skip_fuzzy == false){
-								    
-				// do the fuzzy string matching logic stuff 
-			    tresh = document.getElementById("fuzzytol").value
-			    
-			    var fuzzySearchOptions = {
-			      tokenize: true,
-			      findAllMatches: true,
-			      threshold: tresh,
-			      include: ["score"],
-			      keys: ["col"]
-			    };
-	
-			    var fuse = new Fuse(transformcols,fuzzySearchOptions); // "list" is the item array
-			    var result = fuse.search(key);
-	
-			    
-			    if (result.length > 0) {
-			    
-					for (var j=0;j<result.length;j++){
-						if(j >= 5)
-							break;
-				
-						var fuzSearchResults = newRow.insertCell(j+4)
-						fuzSearchResults.setAttribute("title", result[j].score)
-						fuzSearchResults.className= key + "-dropdown+suggested fuzz"
-						fuzSearchResults.appendChild(document.createTextNode(result[j].item.col))
-	
-					}
-					document.getElementById(key + "-dropdown").value = result[0].item.col
-	
-			    
-			    }
-			}
-
 		}
 	}
 	
@@ -891,46 +883,36 @@ var permittransformcols = [
 		
 		
 		var contractorfields = new Array();
-		var output 			 = document.getElementById("output");
-		output.innerHTML 	 = ""
-		table 				 = document.getElementById("table")
+		var output 			= document.getElementById("output");
+		output.innerHTML 	= ""
+		table 				= document.getElementById("table")
 		
 		
-		//grab the json because you want to insert it as a commented code line in the python output
-		var data 		= document.getElementById("jsonbox").value
-		output.innerHTML = output.innerHTML + "'''" +  data + "'''\n\n"
-		
-		//loop through the mapping table and start to build the python stuff 
 		for(var i=0;i<table.rows.length;i++){
 		
-			docvalue  		= table.rows[i].cells[1] //cell one is the dropdown
-			selection 		= document.getElementById(docvalue.innerHTML + "-dropdown")
-			tempselection 	= selection.value		//get value of drop down
-			fieldtype		= table.rows[i].cells[3].innerHTML //figure out what type of fied it is
+			docvalue  = table.rows[i].cells[1] //cell one is the dropdown
+			selection = document.getElementById(docvalue.innerHTML + "-dropdown")
+			tempselection = selection.value		
 			
-			console.log(fieldtype);
-			
-			if(fieldtype == "permit"){
-			
-				if(tempselection != "exclude" && tempselection != "issuedate")
-					output.innerHTML = output.innerHTML + tempselection +  '=doc["'+ docvalue.innerHTML + '"]\n'			
+			if(tempselection != "exclude" && tempselection != "issuedate" && table.rows[i].cells[4].children[0].checked == false)
+				output.innerHTML = output.innerHTML + tempselection +  '=doc["'+ docvalue.innerHTML + '"]\n'			
+				
+			//cell four is the contractor cell
+			if(table.rows[i].cells[4].children[0].checked == true)
+				contractorfields.push(i);
 					
-			} else if (fieldtype == "contractor"){//if it's a contractor field, then add to an array and build that part separately below
-
-				if(table.rows[i].cells[3].innerHTML == "contractor")	
-					contractorfields.push(i);
-					
-			}
+//			console.log(table.rows[i].cells[4].children[0].checked)
+				
 		}
 		
 		if(contractorfields.length == 0)
 		{	
 			output.innerHTML = output.innerHTML + "\ncontractors.add(" + "\n" +
-														'&nbsp;&nbsp;&nbsp;&nbsp;business_name=doc[""]'+ "\n" +
-														'&nbsp;&nbsp;&nbsp;&nbsp;phone_1=doc[""]'+ "\n" +
-														'&nbsp;&nbsp;&nbsp;&nbsp;street_address=doc[""]'+ "\n" +
-														'&nbsp;&nbsp;&nbsp;&nbsp;license_id=doc[""]'+ "\n" +
-														'&nbsp;&nbsp;&nbsp;&nbsp;state=doc[""]'+ "\n" +
+														'&emsp;business_name=doc[""]'+ "\n" +
+														'&emsp;phone_1=doc[""]'+ "\n" +
+														'&emsp;street_address=doc[""]'+ "\n" +
+														'&emsp;license_id=doc[""]'+ "\n" +
+														'&emsp;state=doc[""]'+ "\n" +
 														
 														"\n" + ")" 
 		}
@@ -943,27 +925,18 @@ var permittransformcols = [
 				docvalue  = table.rows[row].cells[1]
 				selection = document.getElementById(docvalue.innerHTML + "-dropdown")
 				tempselection = selection.value	
-				output.innerHTML = output.innerHTML + "&nbsp;&nbsp;&nbsp;&nbsp;" + tempselection +  '=doc["'+ docvalue.innerHTML + '"]\n'
+				output.innerHTML = output.innerHTML + "&emsp;" + tempselection +  '=doc["'+ docvalue.innerHTML + '"]\n'
 			}
 			
 			output.innerHTML = output.innerHTML +"\n" + ")" 
 		}
-										
-										
 													
 		output.innerHTML = output.innerHTML + "\n"
 		output.innerHTML = output.innerHTML + "status_history.add(" + "\n" +
-													'&nbsp;&nbsp;&nbsp;&nbsp;status='+ "\n" +		
-													'&nbsp;&nbsp;&nbsp;&nbsp;effective_date=doc[""]'+ "\n" +		
+													'&emsp;status='+ "\n" +		
+													'&emsp;effective_date=doc[""]'+ "\n" +		
 													
 													"\n" + ")" 		
-		
-		
-		//generate the transform command 	
-		filename 	  = document.getElementById("filename");										
-		finalfilename = filename.value.substring(0, filename.value.length - 3)
-		document.getElementById("gentransformcommand").innerHTML 	= "python transform.py --source="+ finalfilename +" --entity-type=permit --debug"
-		
 
 	}
 
@@ -983,24 +956,22 @@ var permittransformcols = [
 	
 	    document.body.removeChild(element);
 	}
-	
-	//click event handlers 
 	document.getElementById("dltransformscript").onclick = downloadtransformscript;
 	document.getElementById("mapping").onclick = createMappingTable;
 	document.getElementById("generate").onclick = createTemplate;
-	document.getElementById("categorizefields").onclick = categorizefieldstable
 	
 	window.onload = function(){
 	    document.getElementById('table').onclick = function(e){
 	        var e = e || window.event;
 	        var target = e.target || e.srcElement;
 	        if(target.tagName.toLowerCase() ==  "td") {
-	        
-	            selectid = target.className.split("+")[0];
-	         
-	            console.log(target.innerHTML + " " + target.className + " " + selectid);
+	            selectid = target.className.split(" ")[0];
+//	            alert(target.innerHTML + " " + target.className + " " + selectid);
 
 				document.getElementById(selectid).value = target.innerHTML;
+	            
+	            
+	            
 	        }
 	    };
 	};	
@@ -1011,7 +982,7 @@ var permittransformcols = [
 		
 		font-family: "Avenir"
 	}
-	#output, #genjsoncommand, #gentransformcommand {
+	#output, #genjsoncommand {
 		font-family: "Courier New";
 		font-size: 14;
 	}
@@ -1021,11 +992,8 @@ var permittransformcols = [
 	table {
 		white-space: nowrap;
 	}
-	.fuzz{
-		background-color: #428bca;
-		/*background-color: #FF7E47;*/
-		cursor:  hand;
-		color: #f5f5f5;
+	.suggested{
+		background-color: #FF7E47;
 	}
 
 /*	#jsonbox{

@@ -1,0 +1,483 @@
+{
+    "Value": 196000,
+    "PermitNo": "BL20170013",
+    "DateGrant": "2017-01-06",
+    "WorkClass": "IRR",
+    "Contractor": "BAKKEN CONTRACTING CO LLC",
+    "PermitAddr": "220 8 ST S UNIT A1",
+    "Establishment": ""
+}
+
+
+{
+    "CNST": " ",
+    "FEES": "",
+    "OWNER": "VATELLA FIELDS",
+    "PROJECT": "TYPE B DAYCARE",
+    "PERMIT #": "2008000196D",
+    "BAS SQ FT": 0,
+    "EST. COST": 0,
+    "LIV SQ FT": 0,
+    "NLV SQ FT": 0,
+    "OWNER CSZ": "TOLEDO, OH 43602",
+    "PARCEL ID": "N/A",
+    "PERMIT DT": "2008-08-20",
+    "CONTRACTOR": "LUCAS COUNTY JOB & FAMILY SERVICES",
+    "LOT NUMBER": "N/A",
+    "WORK DESC 1": "TYPE B DAYCARE",
+    "WORK DESC 2": " ",
+    "WORK DESC 3": " ",
+    "WORK DESC 4": "",
+    "WORK DESC 5": "",
+    "CONTRACTOR 2": " ",
+    "CONTRACTOR 3": " ",
+    "CONTRACTOR 4": " ",
+    "JURISDICTION": "CITY OF TOLEDO",
+    "SITE ADDRESS": "938 13TH ST S",
+    "SUB DIVISION": " ",
+    "OWNER ADDRESS": " ",
+    "APPLICANT NAME": " ",
+    "CONTRACTOR CSZ": "",
+    "OWNER ADDRESS2": " ",
+    "CONTRACTOR PHONE": " ",
+    "CONTRACTOR ADDRESS": " ",
+    "UNITS/STORIES/DIMENSIONS": "0/0/",
+    "UG1/CS1|UG2/CS2|UG3/CS3|UG4/CS4|UG5/CS5": "/"
+}
+
+{
+    "CNST": "2C",
+    "FEES": 352.05,
+    "OWNER": "BOARD OF LUCAS COUNTY COMM",
+    "PROJECT": "ADD COM/EMS GARAGE",
+    "PERMIT #": "9800193B",
+    "BAS SQ FT": 0,
+    "EST. COST": 92000,
+    "LIV SQ FT": 1612,
+    "NLV SQ FT": 0,
+    "OWNER CSZ": "TOLEDO, OH 43604",
+    "PARCEL ID": "N/A",
+    "PERMIT DT": "1998-02-23",
+    "CONTRACTOR": "BROOKS CONTRACTING",
+    "LOT NUMBER": "N/A",
+    "WORK DESC 1": "COMMERCIAL BUILDING",
+    "WORK DESC 2": " ",
+    "WORK DESC 3": " ",
+    "WORK DESC 4": "",
+    "WORK DESC 5": "",
+    "CONTRACTOR 2": " ",
+    "CONTRACTOR 3": " ",
+    "CONTRACTOR 4": " ",
+    "JURISDICTION": "CITY OF TOLEDO  ",
+    "SITE ADDRESS": "129 21ST STREET",
+    "SUB DIVISION": "TOLEDO CITY",
+    "OWNER ADDRESS": "1 GOVERNMENT CENTER",
+    "APPLICANT NAME": "CINDY",
+    "CONTRACTOR CSZ": "PERRYSBURG, OH 43551",
+    "OWNER ADDRESS2": "SUITE 580",
+    "CONTRACTOR PHONE": "419-872-4744",
+    "CONTRACTOR ADDRESS": "27226 GLENWOOD RD",
+    "UNITS/STORIES/DIMENSIONS": "0/0/",
+    "UG1/CS1|UG2/CS2|UG3/CS3|UG4/CS4|UG5/CS5": "S2/328"
+}
+
+
+{
+    "Code": "OBBC",
+    "Type": "Alt",
+    "Issued": "2007-01-19",
+    "CommRes": "Commercial",
+    "Sq. Ft.": 7144,
+    "Estimate": 0,
+    "PermitNo": 2006025,
+    "Applicant": "Jesse Baker",
+    "Parcel ID": "H4000007000175",
+    "Main Address": "Church St E 116 1/2 now 118",
+    "Application For": "revision to approved plan"
+}
+
+{
+    "Text64": "",
+    "Text69": "Residential Accessor",
+    "Text71": "2007-04-02",
+    "Text75": "54-06-12-0-141",
+    "Text79": " ",
+    "Text82": 352,
+    "Category": "BUILDING",
+    "CONS_CATG": "",
+    "Permit No": 11016,
+    "Owner Name": " ",
+    "Estimated Cost": 26000,
+    "Property Address": "1097 FINCHLEY RD"
+}
+
+{
+    "FEE": 113,
+    "CITY": "Bacliff",
+    "OWNER": "A. Haxhiraj",
+    "ADDRESS": "315 Kansas",
+    "CONTRACTOR": "",
+    "FLOOD ZONE": "C",
+    "PERMIT NO.": "30114-17",
+    "TYPE OF IMPROVEMENT": "Resd"
+}
+
+{
+    "": "",
+    "Fee": "",
+    "Date": "",
+    "Number": "",
+    "Address": "",
+    "Ck/Cash": "",
+    "Est Cost": "",
+    "Contractor": "",
+    "Owner Name": "",
+    "Description": ""
+}
+
+{
+    "Status": "Permit Finalled",
+    "Address": "7812 Serrano Ct",
+    "Contractor": "Rivera Roofing Company Inc",
+    "Date Issued": "02/09/2001",
+    "Permit Type": "ReRoof",
+    "Date Finalled": "06/27/2001",
+    "Permit Number": "210290",
+    "Expiration Date": "",
+    "Application Date": "02/09/2001",
+    "Work Description": "OVERLAY WITH 25 YR COMP",
+    "Project Valuation": 4500
+}
+
+
+{
+    "Date": "07/26/2007",
+    "Case #": "S 2004 000470",
+    "Status": "LICENSE REVOKED",
+    "violations": [
+        {
+            "CODE": "Business & Professions Code",
+            "VIOLATION": "7117.5B",
+            "DESCRIPTION": "Contracted with suspended license"
+        },
+        {
+            "CODE": "Business & Professions Code",
+            "VIOLATION": "7098",
+            "DESCRIPTION": "Other license was revoked"
+        },
+        {
+            "CODE": "Business & Professions Code",
+            "VIOLATION": "7121",
+            "DESCRIPTION": "Associated with disciplined licensee"
+        },
+        {
+            "CODE": "Business & Professions Code",
+            "VIOLATION": "7121.5",
+            "DESCRIPTION": "Qualifier prohibited against association"
+        }
+    ],
+    "License Number": "691333",
+    "Contractor Name": "CYPRESS LANDSCAPING",
+    "Number of Complaints": "1"
+}
+
+{
+    "Disciplinary": {
+        "ENFORCEMENT CIVIL PENALTIES": {},
+        "LICENSE SUSPENSIONS & REVOCATIONS": [
+            {
+                "Sanction:": "License Suspended",
+                "Violation:": "Administrative Suspension - No RMI - Licensee violated a rule or order of the board",
+                "Sanction Date:": "3/29/2011",
+                "Investigation Number:": "90773"
+            }
+        ]
+    }
+}
+
+{
+    "Date": "05/18/2015",
+    "Case #": "N 2009 000403",
+    "Status": "PREVIOUS CASE",
+    "violations": [
+        {
+            "CODE": "Business & Professions Code",
+            "VIOLATION": "7109.A",
+            "DESCRIPTION": "Departed from trade standards"
+        },
+        {
+            "CODE": "Business & Professions Code",
+            "VIOLATION": "7113",
+            "DESCRIPTION": "Exceeded contract amount"
+        },
+        {
+            "CODE": "Business & Professions Code",
+            "VIOLATION": "7159.C3BI",
+            "DESCRIPTION": "Did not provide the date buyer signed the contract"
+        },
+        {
+            "CODE": "Business & Professions Code",
+            "VIOLATION": "7159.C4",
+            "DESCRIPTION": "No unconditional lien release provided as work progresses"
+        },
+        {
+            "CODE": "Business & Professions Code",
+            "VIOLATION": "7159.C6",
+            "DESCRIPTION": "No notice re: obtaining a performance and pymnt bond"
+        },
+        {
+            "CODE": "Business & Professions Code",
+            "VIOLATION": "7159.5A3",
+            "DESCRIPTION": "Exceeded down pymnt of $1000 or 10% whichever is least"
+        },
+        {
+            "CODE": "Business & Professions Code",
+            "VIOLATION": "7159.D1",
+            "DESCRIPTION": "No business name"
+        },
+        {
+            "CODE": "Business & Professions Code",
+            "VIOLATION": "7159.D3",
+            "DESCRIPTION": "No home improvement label on the contract"
+        },
+        {
+            "CODE": "Business & Professions Code",
+            "VIOLATION": "7159.D4",
+            "DESCRIPTION": "Notice that docs are to be complete before work is started"
+        }
+    ],
+    "License Number": "924526",
+    "Contractor Name": "SAN JOAQUIN CONSTRUCTION SPECIALIST",
+    "Number of Complaints": "1"
+}
+
+
+{
+    "Appl Date": "01/02/07",
+    "Zip Codes": "75070",
+    "Appl Status ": "APPROVED",
+    "Permit Issue": "01/03/07",
+    "Permit Status": "PERMIT PRINTED",
+    "Street Address": "6404 ST MICHAEL DR",
+    "Contractor Name": "ROBERTSON POOLS & SPAS",
+    "Application Name": "07-000007",
+    "Permit Expiration": "01/04/08",
+    "Prj Estimated Value": 35000,
+    "Application Description": "Swimming Pool",
+    "Permit Code Description": "ELECTRICAL PERMIT",
+    "Application Type Description": "RES - SWIMMING POOL"
+}
+
+"""C.O. ISSUED""",50
+"""FINAL INSPECTION COMPLETE""",1
+"""TO BE ISSUED""",29
+"""PERMIT PRINTED""",1384
+"""CLOSED""",59
+"""PERMIT REVOKED""",2
+
+{
+    "Value": "",
+    "Full Owner": "THE MONTES GROUP LLC  5401 N CAGE STE B PHARR  TX 78577 (956) 212-3561",
+    "Project Type": "COMMERCIAL REMODEL",
+    "Project Number": "CR-11-0191",
+    "Address / Legal": "5401 N CAGE BLVD Blvd. RAY 1 Block  Lot 1 RAY 1 SUBDIVISION LOT 1",
+    "Full Contractor": "OWNER OWNER OWNER .  ., TX 78577 (956) 000-0000 (956) 000-0000 123",
+    "Permit Issued Date": "1/3/2012",
+    "Project Description": "BUILD HANDICAP REST ROOM HANDICAP PARKING AND RAMPS & SIDEWALK"
+}
+
+
+{
+    "Value": "",
+    "Job Value": "$140,000.00 ",
+    "Full Owner": "URIBE JUANA F.  ELISA GARCIA  612 W EAGEL  PHARR TX 78577 (956) 904-6103",
+    "Project Type": "DUPLEX",
+    "Project Number": "D-12-4098",
+    "Address / Legal": "1801 S KUMQUAT ST  LOS SENDEROS LOT 64",
+    "Full Contractor": "OWNER OWNER OWNER .  ., TX 78577 (956) 000-0000 (956) 000-0000 123",
+    "Permit Issued Date": "7/3/12",
+    "Project Description": "2 BUILDINGS 4 APARTMENTS;; 4 METERS @ 125 AMPS"
+}
+
+
+{
+    "": "",
+    "Issued": "2016-05-04",
+    "Finaled": "2016-06-13",
+    "Permit #": "BLD15 0529",
+    "Received": "2015-10-01",
+    "Valuation": 125000,
+    "Owner Name": "G 3 ENTERPRISES INC",
+    "Owner Phone": "209 341 7006",
+    "House Number": "2600",
+    "Owner Address": "502 E Whitmore Ave",
+    "License Number": "773316",
+    "Street Address": "CROWS LANDING RD",
+    "Contractor Name": "B DAVIS INC",
+    "Contractor Phone": "(408) 436-4800",
+    "Work Description": "RETAIL T.I. INCLUDES NEW CEILING SYSTEM, MECHANICAL DUCTWORK, LIGHTING, PLUMBING AND MERCHANDISING FIXTURES FOR \"DOLLAR TREE\"",
+    "Contractor Address": "1441A TERMINAL AVENUE",
+    "Owner City, State, Zip": "Modesto CA, 95358",
+    "APN/Project Description": "086-015-029",
+    "Contractor CIty, State, Zip": "SAN JOSE, , 95112-4314"
+}
+
+{
+    "ISSUED": "2016-01-04",
+    "STATUS": "FINALED",
+    "APPLIED": "2015-09-28",
+    "EXPIRED": "",
+    "FINALED": "2016-09-27",
+    "JOBVALUE": 100000,
+    "SITE_ADDR": "3424 BELMONT AVE",
+    "PERMITTYPE": "RESIDENTIAL",
+    "DESCRIPTION": "823 SF REMODEL - SEE NOTES",
+    "PERMITSUBTYPE": "REMODEL",
+    "Permit Number": "BD15-0938",
+    "CONTRACTOR_NAME": ""
+}
+
+{
+    "ID": " 1695798",
+    "latitude": "41.818022066",
+    "longitude": "-87.637001649",
+    "total_fee": "2139.2",
+    "issue_date": "2006-07-24T00:00:00",
+    "amount_paid": "2139.2",
+    "permit_type": "PERMIT - NEW CONSTRUCTION",
+    "street_name": "42ND",
+    "amount_waived": "0.0",
+    "street_number": "419",
+    "street_suffix": "ST",
+    "estimated_cost": "180000.0",
+    "pin_information": [
+        "20-04-128-035-0000",
+        "20-04-128-040-0000"
+    ],
+    "street_direction": "W",
+    "work_description": "ERECT NEW 2 STORY WITH BASEMENT MASONRY SINGLE FAMILY RESIDENCE WITH DETACHED GARAGE",
+    "contractor_information": [
+        [
+            "ARCHITECT",
+            "BOEHM CHRISTOPHER G",
+            null,
+            null,
+            null,
+            null,
+            null
+        ],
+        [
+            "ARCHITECT",
+            "CHRISTOPHER BOEHM",
+            null,
+            null,
+            null,
+            null,
+            null
+        ],
+        [
+            "CONTRACTOR-ELECTRICAL",
+            "AMI ELECTRIC CO.",
+            "603 DORSET CT.",
+            "WHEELING",
+            "IL",
+            "60090-",
+            "(773)919-0060 x"
+        ],
+        [
+            "EXPEDITOR",
+            "ASHLEY GUERRERO",
+            "203 N. LASALLE SUITE, #2175",
+            "CHICAGO",
+            "IL",
+            "60601-",
+            "(312)617-3370 x"
+        ],
+        [
+            "CONTRACTOR-GENERAL CONTRACTOR",
+            "KASPER DEVELOPMENT LTD.",
+            "445 W. 41ST STREET",
+            "CHICAGO",
+            "IL",
+            "60609-",
+            "(773)548-5091 x"
+        ],
+        [
+            "CONTRACTOR-HEATING",
+            "K&B HEATING & COOLING",
+            "205 HILL STREET",
+            "WILLOW SPR",
+            "IL",
+            "60480",
+            null
+        ],
+        [
+            "MASON - BRICK AND CONCRETE",
+            "MOY MASONRY CORP.",
+            "5053 N. NATCHEZ AVE HM - 773-631-9070",
+            "CHICAGO",
+            "IL",
+            "60656-",
+            "(773)456-4012 X"
+        ],
+        [
+            "MASON - CONCRETE ONLY",
+            "RUANE CONSTRUCTION, INC",
+            "8779 W. LARAWAY RD. COM",
+            "FRANKFORT",
+            "IL",
+            "60423-",
+            "(815)464-0681 X"
+        ],
+        [
+            "CONTRACTOR-PLUMBER/PLUMBING",
+            "PL15546-MICHAEL DIFOGGIO",
+            "3216 S. SHIELDS AVE",
+            "CHICAGO",
+            "IL",
+            "60616-",
+            "(312)791-0097 X"
+        ],
+        [
+            "CONTRACTOR-REFRIGERATION",
+            "K&B HEATING & COOLING",
+            "205 HILL STREET",
+            "WILLOW SPR",
+            "IL",
+            "60480",
+            null
+        ],
+        [
+            "CONTRACTOR-VENTILATION",
+            "K&B HEATING & COOLING",
+            "205 HILL STREET",
+            "WILLOW SPR",
+            "IL",
+            "60480",
+            null
+        ],
+        [
+            "OWNER",
+            "JOSEPH SKIBA",
+            "10905 ATWOOD COURT",
+            "ORLAND PARK",
+            "IL",
+            "60467",
+            null
+        ]
+    ]
+}
+
+{
+    "City": "MORRISTOWN",
+    "Address": "14 NEW STREET",
+    "Subcode": "Fire",
+    "Zipcode": 7960,
+    "Work Type": "Addition/Alteration",
+    "Permit Number": 20170024,
+    "ProfessionalName": "CO ARC CO.",
+    "Work Description": "BATH RENOVATION KITCHEN RENOVATION RESIDENTIAL  ADDITION ",
+    "Permit Close Date": "",
+    "Permit Issue Date": "2017-01-26",
+    "Work Description Comments": "over existing garage and add front stoop & walkway/RNDENIED- VARIANCE OK 12/1/16 BOA16-9/RN"
+}

@@ -1,0 +1,275 @@
+<html>
+<script src="https://cdn.jsdelivr.net/fuse/2.6.1/fuse.min.js" type="text/javascript"></script>
+<div id="results"></div>
+
+<script type="text/javascript">
+
+var transformcols = [
+	{
+		col:'source_id'
+	},
+	{
+		col:'match_id'
+	},
+	{
+		col:'source_permit_id'
+	},
+	{
+		col:'parsed_document_id'
+	},
+	{
+		col:'application_number'
+	},
+	{
+		col:'permit_url'
+	},
+	{
+		col:'status'
+	},
+	{
+		col:'type'
+	},
+	{
+		col:'sub_type'
+	},
+	{
+		col:'project'
+	},
+	{
+		col:'category'
+	},
+	{
+		col:'description'
+	},
+	{
+		col:'job_value'
+	},
+	{
+		col:'fees'
+	},
+	{
+		col:'issuing_office'
+	},
+	{
+		col:'remarks'
+	},
+	{
+		col:'address_number_prefix'
+	},
+	{
+		col:'address_number'
+	},
+	{
+		col:'address_number_suffix'
+	},
+	{
+		col:'street_name_pre_modifier'
+	},
+	{
+		col:'street_name_pre_directional'
+	},
+	{
+		col:'street_name_pre_type'
+	},
+	{
+		col:'street_name'
+	},
+	{
+		col:'street_name_post_type'
+	},
+	{
+		col:'street_name_post_directional'
+	},
+	{
+		col:'subaddress_type'
+	},
+	{
+		col:'subaddress_identifier'
+	},
+	{
+		col:'building_name'
+	},
+	{
+		col:'occupancy_type'
+	},
+	{
+		col:'occupancy_identifier'
+	},
+	{
+		col:'street_address'
+	},
+	{
+		col:'city'
+	},
+	{
+		col:'state'
+	},
+	{
+		col:'zipcode'
+	},
+	{
+		col:'assessor_book'
+	},
+	{
+		col:'assessor_page'
+	},
+	{
+		col:'assessor_parcel'
+	},
+	{
+		col:'subdivision'
+	},
+	{
+		col:'zone'
+	},
+	{
+		col:'tract'
+	},
+	{
+		col:'block'
+	},
+	{
+		col:'lot'
+	},
+	{
+		col:'square_feet'
+	},
+	{
+		col:'num_units'
+	},
+	{
+		col:'num_stories'
+	},
+	{
+		col:'building_type'
+	},
+	{
+		col:'residential'
+	},
+	{
+		col:'commercial'
+	},
+	{
+		col:'applicant_name'
+	},
+	{
+		col:'applicant_business_name'
+	},
+	{
+		col:'applicant_street_address'
+	},
+	{
+		col:'applicant_city'
+	},
+	{
+		col:'applicant_state'
+	},
+	{
+		col:'applicant_zipcode'
+	},
+	{
+		col:'applicant_type'
+	},
+	{
+		col:'owner_name'
+	},
+	{
+		col:'owner_street_address'
+	},
+	{
+		col:'owner_city'
+	},
+	{
+		col:'owner_state'
+	},
+	{
+		col:'owner_zipcode'
+	},
+	{
+		col:'owner_email_1'
+	},
+	{
+		col:'owner_email_2'
+	},
+	{
+		col:'owner_email_3'
+	},
+	{
+		col:'owner_phone_1'
+	},
+	{
+		col:'owner_phone_2'
+	},
+	{
+		col:'owner_phone_3'
+	},
+	{
+		col:'owner_phone_4'
+	},
+	{
+		col:'keyword'
+	},
+	{
+		col:'scraped_at'
+	},
+	{
+		col:'verified_at'
+	},
+	{
+		col:'created_at'
+	},
+	{
+		col:'updated_at'
+	},
+	{
+		col:'phone_1'
+	},
+]
+
+
+
+var options = {
+  tokenize: true,
+  findAllMatches: true,
+  threshold: 0.7,
+  include: ["score"],
+  keys: ["col"]
+};
+var fuse = new Fuse(transformcols,options); // "list" is the item array
+var result = fuse.search("ContractorTelephone");
+
+for (var i=0;i<result.length;i++){
+	document.getElementById("results").innerHTML = document.getElementById("results").innerHTML + JSON.stringify(result[i]) + " "+ result[i].score + "<br/>"
+	console.log(result[i].item.col);
+
+}
+
+//for (var key in result) {
+//  if (result.hasOwnProperty(key)) {
+//  	document.getElementById("results").innerHTML = result[key]
+//  }
+//}
+
+//document.getElementById("results").innerHTML = result.length
+
+
+
+
+
+</script>
+
+
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,493 @@
+<html>
+<h1>
+Transform Script Template Generator 
+</h1>
+<h3>
+(only works for single tiered json strings right now :/)
+</h3>
+<textarea id="jsonbox" rows="40" cols="100" placeholder="paste raw json here">{"Street": "TENNIS PLAZA RD UN 39", "PermitNo": "GP005289", "AddressNo": "84", "OwnerName": "CARVALHO MARIA F.", "IssuedDate": "2017-01-17", "ProposedUse": "INSTALL GAS APPLIANCES", "ContractorName": "Eric J. White", "ContractorTelephone": "6038970152"}</textarea>
+</br>
+<button id="mapping">Start Mapping </button>
+
+</br>
+</br>
+</br>
+
+
+<div>
+	<table id="table">
+		<tbody>
+		
+		</tbody>
+	</table>
+</div>
+<br/><br/>
+<button id="generate">Generate Python Template</button>
+<br/><br/>
+
+<div id="output">
+
+</div>
+
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+
+<script type="text/javascript">
+
+function addSelect(tablecell,dropdownid) {
+    var select = document.createElement("select");
+//    select.setAttribute("name", "mySelect" + i);
+    select.setAttribute("id", dropdownid);
+
+	option = document.createElement('option');
+	option.setAttribute('value',' source_id');
+	option.innerHTML ='source_id'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' match_id');
+	option.innerHTML ='match_id'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' source_permit_id');
+	option.innerHTML ='source_permit_id'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' parsed_document_id');
+	option.innerHTML ='parsed_document_id'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' application_number');
+	option.innerHTML ='application_number'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' permit_url');
+	option.innerHTML ='permit_url'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' status');
+	option.innerHTML ='status'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' type');
+	option.innerHTML ='type'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' sub_type');
+	option.innerHTML ='sub_type'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' project');
+	option.innerHTML ='project'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' category');
+	option.innerHTML ='category'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' description');
+	option.innerHTML ='description'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' job_value');
+	option.innerHTML ='job_value'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' fees');
+	option.innerHTML ='fees'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' issuing_office');
+	option.innerHTML ='issuing_office'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' remarks');
+	option.innerHTML ='remarks'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' address_number_prefix');
+	option.innerHTML ='address_number_prefix'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' address_number');
+	option.innerHTML ='address_number'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' address_number_suffix');
+	option.innerHTML ='address_number_suffix'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' street_name_pre_modifier');
+	option.innerHTML ='street_name_pre_modifier'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' street_name_pre_directional');
+	option.innerHTML ='street_name_pre_directional'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' street_name_pre_type');
+	option.innerHTML ='street_name_pre_type'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' street_name');
+	option.innerHTML ='street_name'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' street_name_post_type');
+	option.innerHTML ='street_name_post_type'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' street_name_post_directional');
+	option.innerHTML ='street_name_post_directional'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' subaddress_type');
+	option.innerHTML ='subaddress_type'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' subaddress_identifier');
+	option.innerHTML ='subaddress_identifier'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' building_name');
+	option.innerHTML ='building_name'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' occupancy_type');
+	option.innerHTML ='occupancy_type'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' occupancy_identifier');
+	option.innerHTML ='occupancy_identifier'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' street_address');
+	option.innerHTML ='street_address'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' city');
+	option.innerHTML ='city'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' state');
+	option.innerHTML ='state'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' zipcode');
+	option.innerHTML ='zipcode'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' assessor_book');
+	option.innerHTML ='assessor_book'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' assessor_page');
+	option.innerHTML ='assessor_page'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' assessor_parcel');
+	option.innerHTML ='assessor_parcel'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' subdivision');
+	option.innerHTML ='subdivision'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' zone');
+	option.innerHTML ='zone'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' tract');
+	option.innerHTML ='tract'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' block');
+	option.innerHTML ='block'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' lot');
+	option.innerHTML ='lot'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' square_feet');
+	option.innerHTML ='square_feet'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' num_units');
+	option.innerHTML ='num_units'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' num_stories');
+	option.innerHTML ='num_stories'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' building_type');
+	option.innerHTML ='building_type'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' residential');
+	option.innerHTML ='residential'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' commercial');
+	option.innerHTML ='commercial'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' applicant_name');
+	option.innerHTML ='applicant_name'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' applicant_business_name');
+	option.innerHTML ='applicant_business_name'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' applicant_street_address');
+	option.innerHTML ='applicant_street_address'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' applicant_city');
+	option.innerHTML ='applicant_city'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' applicant_state');
+	option.innerHTML ='applicant_state'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' applicant_zipcode');
+	option.innerHTML ='applicant_zipcode'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' applicant_type');
+	option.innerHTML ='applicant_type'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' owner_name');
+	option.innerHTML ='owner_name'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' owner_street_address');
+	option.innerHTML ='owner_street_address'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' owner_city');
+	option.innerHTML ='owner_city'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' owner_state');
+	option.innerHTML ='owner_state'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' owner_zipcode');
+	option.innerHTML ='owner_zipcode'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' owner_email_1');
+	option.innerHTML ='owner_email_1'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' owner_email_2');
+	option.innerHTML ='owner_email_2'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' owner_email_3');
+	option.innerHTML ='owner_email_3'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' owner_phone_1');
+	option.innerHTML ='owner_phone_1'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' owner_phone_2');
+	option.innerHTML ='owner_phone_2'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' owner_phone_3');
+	option.innerHTML ='owner_phone_3'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' owner_phone_4');
+	option.innerHTML ='owner_phone_4'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' keyword');
+	option.innerHTML ='keyword'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' scraped_at');
+	option.innerHTML ='scraped_at'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' verified_at');
+	option.innerHTML ='verified_at'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' created_at');
+	option.innerHTML ='created_at'
+	select.appendChild(option)
+	
+	option = document.createElement('option');
+	option.setAttribute('value',' updated_at');
+	option.innerHTML ='updated_at'
+	select.appendChild(option)
+	
+
+
+    document.getElementById(tablecell).appendChild(select);
+
+//    i++;
+}
+	//alert(document.getElementById("jsonbox").value)
+	function createMappingTable(){
+		var data = JSON.parse(document.getElementById("jsonbox").value)
+		var outputdiv = document.getElementById("table").getElementsByTagName('tbody')[0];
+		
+		//document.getElementById("output").innerHTML = data[3]
+		
+		for (var key in data) {
+		  if (data.hasOwnProperty(key)) {
+		    console.log(key + " -> " + data[key]);
+		    var newRow = outputdiv.insertRow(outputdiv.rows.length);
+		    
+		    var newCell1 = newRow.insertCell(0)
+		    newCell1.setAttribute("id", key + "-celldp")
+		    addSelect(key + "-celldp", key + "-dropdown")
+		    
+		    
+		    var newCell2 = newRow.insertCell(1)
+		    newCell2.appendChild(document.createTextNode(key))
+//		    outputdiv.innerHTML = outputdiv.innerHTML + '=doc["' + key + '"]'
+		  }
+		}
+
+//		outputdiv.innerHTML = outputdiv.innerHTML + "</br>"
+
+	}
+	
+	
+	function createTemplate(){
+		
+		var output = document.getElementById("output");
+		output.innerHTML = ""
+		table = document.getElementById("table")
+		
+		for(var i=0;i<table.rows.length;i++){
+		
+			
+
+			docvalue  = table.rows[i].cells[1]
+			selection = document.getElementById(docvalue.innerHTML + "-dropdown")
+			tempselection = selection.value		
+			output.innerHTML = output.innerHTML + tempselection +  '=doc["' + docvalue.innerHTML + '"]</br>'			
+		}
+		
+		output.innerHTML = output.innerHTML + "</br> contractors.add(" + "</br>" +
+													'&emsp;business_name=doc[""]' + "</br>" +
+													'&emsp;phone_1=doc[""]' + "</br>" +
+													'&emsp;street_address=doc[""]' + "</br>" +
+													'&emsp;license_id=doc[""]' + "</br>" +
+													'&emsp;state=doc[""]' + "</br>" +
+													
+													"</br>" + ")" 
+													
+		output.innerHTML = output.innerHTML + "</br>"
+		output.innerHTML = output.innerHTML + "status_history.add(" + "</br>" +
+													'&emsp;status=' + "</br>" +		
+													'&emsp;effective_date=doc[""]' + "</br>" +		
+													
+													"</br>" + ")" 		
+
+	}
+	
+	document.getElementById("mapping").onclick = createMappingTable;
+
+	document.getElementById("generate").onclick = createTemplate;
+	
+</script>
+
+<style>
+	html {
+		
+		font-family: "Avenir"
+	}
+	#output{
+		font-family: "Courier New";
+	}
+	table td{
+		border: 1px solid black;
+	}
+
+/*	#jsonbox{
+		height: 300px;
+	}*/
+</style>
+
+</html>

@@ -1,0 +1,69 @@
+<html>
+<h1>
+Transform Script Template Generator 
+</h1>
+<h3>
+(only works for single tiered json strings right now :/)
+</h3>
+<textarea id="jsonbox" rows="40" cols="100" placeholder="paste raw json here"></textarea>
+</br>
+<button id="generate">Generate Python Template</button>
+</br>
+</br>
+</br>
+
+<div id="output">
+
+</div>
+
+<script type="text/javascript">
+	//alert(document.getElementById("jsonbox").value)
+	function createTemplate(){
+		var data = JSON.parse(document.getElementById("jsonbox").value)
+		var outputdiv = document.getElementById("output")
+		
+		//document.getElementById("output").innerHTML = data[3]
+		
+		for (var key in data) {
+		  if (data.hasOwnProperty(key)) {
+		    console.log(key + " -> " + data[key]);
+		    outputdiv.innerHTML = outputdiv.innerHTML + '=doc["' + key + '"]</br>'
+		  }
+		}
+		outputdiv.innerHTML = outputdiv.innerHTML + "</br>"
+		outputdiv.innerHTML = outputdiv.innerHTML + "contractors.add(" + "</br>" +
+													'&emsp;business_name=doc[""]' + "</br>" +
+													'&emsp;phone_1=doc[""]' + "</br>" +
+													'&emsp;street_address=doc[""]' + "</br>" +
+													'&emsp;license_id=doc[""]' + "</br>" +
+													'&emsp;state=doc[""]' + "</br>" +
+													
+													"</br>" + ")" 
+													
+		outputdiv.innerHTML = outputdiv.innerHTML + "</br>"
+		outputdiv.innerHTML = outputdiv.innerHTML + "status_history.add(" + "</br>" +
+													'&emsp;status=' + "</br>" +		
+													'&emsp;effective_date=doc[""]' + "</br>" +		
+													
+													"</br>" + ")" 		
+	}
+	
+	document.getElementById("generate").onclick = createTemplate;
+	
+</script>
+
+<style>
+	html {
+		
+		font-family: "Avenir"
+	}
+	#output{
+		font-family: "Courier New";
+	}
+
+/*	#jsonbox{
+		height: 300px;
+	}*/
+</style>
+
+</html>
